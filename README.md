@@ -75,7 +75,15 @@ cd DR-IT-ClaudeSDKSetup
 
 ## 📦 What Gets Installed
 
-### 1. MCP Services (Docker-based)
+### 1. Development Toolchain
+- **Node.js**: v22+ LTS JavaScript runtime
+- **Claude CLI**: Command-line interface for Claude Code
+- **Playwright MCP**: Browser automation server
+- **Python uv**: Fast Python package manager
+- **Bun**: Alternative JavaScript runtime
+- **n8n**: Workflow automation platform
+
+### 2. MCP Services (Docker-based)
 - **filesystem**: File operations in containers
 - **memory**: Persistent knowledge storage
 - **puppeteer**: Web browser automation
@@ -85,19 +93,19 @@ cd DR-IT-ClaudeSDKSetup
 - **redis**: Caching service
 - **slack**: Team communication
 
-### 2. Claude SDK
+### 3. Claude SDK
 - Python SDK with virtual environment
 - TypeScript/JavaScript SDK
 - Example scripts for both languages
 - Integration examples with MCP services
 
-### 3. Auto-Update System
+### 4. Auto-Update System
 - Daily updates at 2 AM via LaunchAgent
 - Docker Watchtower for container updates
 - Update scripts with logging
 - Token rotation utilities
 
-### 4. Security Features
+### 5. Security Features
 - Encrypted credential storage
 - API key rotation scripts
 - Git-ignored sensitive files
@@ -116,7 +124,9 @@ DR-IT-ClaudeSDKSetup/
 │   ├── setup-mcp.sh           # MCP services setup
 │   ├── setup-sdk.sh           # Claude SDK setup
 │   ├── setup-autoupdate.sh    # Auto-update configuration
-│   └── verify-installation.sh # Health check script
+│   ├── setup-dev-toolchain.sh # Development tools setup
+│   ├── verify-installation.sh # Health check script
+│   └── verify-toolchain.sh    # Toolchain verification
 ├── configs/                    # Configuration files
 │   ├── docker-compose.yml     # MCP services configuration
 │   ├── claude-desktop-config.json
