@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "worktrees": {},
+  "settings": {
+    "defaultBranch": "main",
+    "worktreePrefix": "claude-",
+    "maxWorktrees": 8,
+    "autoCleanup": true,
+    "syncOnCreate": true
+  }
+}

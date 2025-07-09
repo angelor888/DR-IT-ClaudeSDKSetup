@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "enabled": false,
+  "strictMode": true,
+  "trustedCommands": [
+    "ls", "pwd", "cat", "head", "tail", "grep", "find", "git status", "git diff", "git log",
+    "npm test", "npm run", "python -m pytest", "go test", "cargo test",
+    "docker ps", "docker logs", "kubectl get", "kubectl describe"
+  ],
+  "dangerousCommands": [
+    "rm -rf", "dd", "mkfs", "fdisk", "sudo rm", "sudo dd", "sudo mkfs",
+    "chmod 777", "chown -R", "sudo chmod", "sudo chown",
+    "curl | bash", "wget | bash", "> /dev/", "format", "del *"
+  ],
+  "cacheSettings": {
+    "enabled": true,
+    "expireHours": 24,
+    "maxEntries": 1000,
+    "requireReconfirmation": ["file deletion", "system modification", "network requests"]
+  },
+  "warningSettings": {
+    "showWarnings": true,
+    "requireConfirmation": true,
+    "audioAlert": true,
+    "logAllActions": true
+  }
+}

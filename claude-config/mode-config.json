@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "currentModel": "claude-opus-4",
+  "currentMode": "default",
+  "models": {
+    "claude-opus-4": {
+      "name": "Claude Opus 4",
+      "description": "Highest capability for complex reasoning and analysis",
+      "use_cases": ["complex reasoning", "architecture design", "research", "analysis"],
+      "performance": "high",
+      "speed": "medium"
+    },
+    "claude-sonnet-3.5": {
+      "name": "Claude Sonnet 3.5", 
+      "description": "Balanced performance and speed",
+      "use_cases": ["general development", "code review", "documentation"],
+      "performance": "medium",
+      "speed": "fast"
+    },
+    "claude-haiku-3.5": {
+      "name": "Claude Haiku 3.5",
+      "description": "Fast responses for simple tasks",
+      "use_cases": ["code formatting", "simple questions", "quick edits"],
+      "performance": "basic",
+      "speed": "very fast"
+    }
+  },
+  "modes": {
+    "default": {
+      "name": "Default Mode",
+      "description": "Standard interactive mode with full context awareness",
+      "auto_accept": false,
+      "plan_mode": false,
+      "voice_enabled": true
+    },
+    "plan": {
+      "name": "Plan Mode",
+      "description": "Structured task planning with step-by-step execution",
+      "auto_accept": false,
+      "plan_mode": true,
+      "voice_enabled": true
+    },
+    "auto": {
+      "name": "Auto-Accept Mode",
+      "description": "Automatic execution of safe commands",
+      "auto_accept": true,
+      "plan_mode": false,
+      "voice_enabled": true
+    },
+    "speed": {
+      "name": "Speed Mode",
+      "description": "Optimized for fast responses",
+      "auto_accept": true,
+      "plan_mode": false,
+      "voice_enabled": false
+    }
+  },
+  "shortcuts": {
+    "Shift+Tab Shift+Tab": "plan",
+    "Cmd+Shift+P": "plan",
+    "Cmd+Shift+A": "auto",
+    "Cmd+Shift+D": "default"
+  }
+}

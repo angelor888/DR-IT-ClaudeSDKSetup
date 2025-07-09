@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "autoDetection": {
+    "enabled": true,
+    "languages": ["javascript", "python", "bash", "html", "css", "json", "yaml", "xml", "sql"],
+    "confidence": 0.8
+  },
+  "fileNaming": {
+    "useClaudeAnalysis": true,
+    "fallbackPrefix": "clipboard-",
+    "timestampFormat": "%Y%m%d-%H%M%S",
+    "maxFilenameLength": 50
+  },
+  "outputDirectory": ".",
+  "backup": {
+    "enabled": true,
+    "directory": "~/.config/claude/clipboard/backup"
+  },
+  "integrations": {
+    "raycast": true,
+    "automator": true,
+    "quickAction": true
+  }
+}

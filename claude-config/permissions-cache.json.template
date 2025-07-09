@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "cache": {},
+  "statistics": {
+    "totalQueries": 0,
+    "cacheHits": 0,
+    "cacheMisses": 0,
+    "dangerousBlocked": 0
+  }
+}

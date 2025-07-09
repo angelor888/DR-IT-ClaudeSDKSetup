@@ -1,0 +1,131 @@
+{
+  "project": "DR-IT-ClaudeSDKSetup",
+  "designBrief": "help",
+  "generated": "2025-07-09T07:23:39Z",
+  "variations": {
+    "modern-minimal": {
+      "loadTime": {
+        "estimated": "< 1 second",
+        "score": 95
+      },
+      "accessibility": {
+        "score": 95,
+        "wcag": "AA compliant"
+      },
+      "fileSize": {
+        "html": "2.5KB",
+        "css": "10KB",
+        "js": "4KB",
+        "total": "16.5KB"
+      },
+      "performance": {
+        "lighthouse": 95,
+        "gtmetrix": "A",
+        "pagespeed": 92
+      },
+      "features": {
+        "responsive": true,
+        "animations": "subtle",
+        "interactions": "minimal",
+        "accessibility": "high"
+      }
+    },
+    "bold-creative": {
+      "loadTime": {
+        "estimated": "< 2 seconds",
+        "score": 80
+      },
+      "accessibility": {
+        "score": 85,
+        "wcag": "AA compliant with considerations"
+      },
+      "fileSize": {
+        "html": "3KB",
+        "css": "18KB",
+        "js": "10KB",
+        "total": "31KB"
+      },
+      "performance": {
+        "lighthouse": 78,
+        "gtmetrix": "B",
+        "pagespeed": 75
+      },
+      "features": {
+        "responsive": true,
+        "animations": "extensive",
+        "interactions": "high",
+        "accessibility": "medium"
+      }
+    },
+    "professional-business": {
+      "loadTime": {
+        "estimated": "< 0.8 seconds",
+        "score": 98
+      },
+      "accessibility": {
+        "score": 98,
+        "wcag": "AA+ compliant"
+      },
+      "fileSize": {
+        "html": "2.8KB",
+        "css": "8KB",
+        "js": "5KB",
+        "total": "15.8KB"
+      },
+      "performance": {
+        "lighthouse": 97,
+        "gtmetrix": "A+",
+        "pagespeed": 96
+      },
+      "features": {
+        "responsive": true,
+        "animations": "conservative",
+        "interactions": "professional",
+        "accessibility": "excellent"
+      }
+    },
+    "interactive-dynamic": {
+      "loadTime": {
+        "estimated": "< 1.5 seconds",
+        "score": 85
+      },
+      "accessibility": {
+        "score": 88,
+        "wcag": "AA compliant"
+      },
+      "fileSize": {
+        "html": "3.2KB",
+        "css": "15KB",
+        "js": "22KB",
+        "total": "40.2KB"
+      },
+      "performance": {
+        "lighthouse": 82,
+        "gtmetrix": "B+",
+        "pagespeed": 78
+      },
+      "features": {
+        "responsive": true,
+        "animations": "advanced",
+        "interactions": "excellent",
+        "accessibility": "good"
+      }
+    }
+  },
+  "recommendations": {
+    "fastest": "professional-business",
+    "mostAccessible": "professional-business",
+    "mostVisual": "bold-creative",
+    "mostInteractive": "interactive-dynamic",
+    "mostProfessional": "professional-business",
+    "mostCreative": "bold-creative"
+  },
+  "useCases": {
+    "corporate": "professional-business",
+    "startup": "modern-minimal",
+    "creative": "bold-creative",
+    "gaming": "interactive-dynamic",
+    "saas": "modern-minimal",
+    "ecommerce": "professional-business"
+  }
+}
