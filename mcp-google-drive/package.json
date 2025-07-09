@@ -1,0 +1,24 @@
+{
+  "name": "mcp-google-drive",
+  "version": "1.0.0",
+  "description": "MCP server implementation for Google Drive integration",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "google-drive",
+    "google-workspace",
+    "claude",
+    "ai-assistant"
+  ],
+  "author": "DuetRight Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "googleapis": "^129.0.0",
+    "dotenv": "^16.3.1"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "mcp-matterport",
+  "version": "1.0.0",
+  "description": "MCP server implementation for Matterport 3D tours integration",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "matterport",
+    "3d-tours",
+    "virtual-reality",
+    "claude",
+    "ai-assistant"
+  ],
+  "author": "DuetRight Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.3.1"
+  }
+}

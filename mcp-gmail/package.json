@@ -1,0 +1,25 @@
+{
+  "name": "mcp-gmail",
+  "version": "1.0.0",
+  "description": "MCP server implementation for Gmail integration",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "gmail",
+    "google-workspace",
+    "email",
+    "claude",
+    "ai-assistant"
+  ],
+  "author": "DuetRight Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "googleapis": "^129.0.0",
+    "dotenv": "^16.3.1"
+  }
+}

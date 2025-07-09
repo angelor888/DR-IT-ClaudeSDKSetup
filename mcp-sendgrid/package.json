@@ -1,0 +1,27 @@
+{
+  "name": "mcp-sendgrid",
+  "version": "1.0.0",
+  "description": "MCP server implementation for SendGrid email services integration",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "sendgrid",
+    "twilio",
+    "email",
+    "transactional",
+    "claude",
+    "ai-assistant"
+  ],
+  "author": "DuetRight Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@sendgrid/mail": "^8.1.3",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.3.1"
+  }
+}
