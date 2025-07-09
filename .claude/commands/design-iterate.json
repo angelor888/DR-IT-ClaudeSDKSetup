@@ -1,0 +1,47 @@
+{
+  "name": "design-iterate",
+  "description": "Generate multiple UI design iterations in parallel",
+  "type": "parallel",
+  "parameters": {
+    "component": {
+      "type": "string",
+      "description": "The UI component to iterate on",
+      "required": true
+    },
+    "variations": {
+      "type": "number",
+      "description": "Number of design variations to generate",
+      "default": 3,
+      "min": 1,
+      "max": 5
+    },
+    "style": {
+      "type": "string",
+      "description": "Design style preference",
+      "default": "modern",
+      "options": ["modern", "minimalist", "playful", "professional", "dark"]
+    }
+  },
+  "agents": [
+    {
+      "name": "design-agent-1",
+      "prompt": "Create a {{style}} {{component}} design focusing on user experience and accessibility. Output should include HTML, CSS, and a brief explanation of design choices.",
+      "output_path": "UI-iterations/variation-1/"
+    },
+    {
+      "name": "design-agent-2", 
+      "prompt": "Design a {{style}} {{component}} with emphasis on mobile responsiveness and clean aesthetics. Include component documentation and usage examples.",
+      "output_path": "UI-iterations/variation-2/"
+    },
+    {
+      "name": "design-agent-3",
+      "prompt": "Create an innovative {{style}} {{component}} design that pushes creative boundaries while maintaining usability. Include interactive elements and animations.",
+      "output_path": "UI-iterations/variation-3/"
+    }
+  ],
+  "post_process": {
+    "consolidate": true,
+    "generate_comparison": true,
+    "create_demo": true
+  }
+}

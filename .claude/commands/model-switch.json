@@ -1,0 +1,87 @@
+{
+  "name": "model-switch",
+  "description": "Quickly switch between Claude models with task-appropriate suggestions",
+  "type": "interactive",
+  "parameters": {
+    "model": {
+      "type": "string",
+      "description": "Target model to switch to",
+      "required": false,
+      "options": [
+        "claude-3-opus-20240229",
+        "claude-3-sonnet-20240229", 
+        "claude-3-haiku-20240307",
+        "auto-suggest"
+      ]
+    },
+    "task_type": {
+      "type": "string",
+      "description": "Type of task for model suggestion",
+      "required": false,
+      "options": ["coding", "writing", "analysis", "debugging", "creative", "speed"],
+      "default": "coding"
+    },
+    "save_preference": {
+      "type": "boolean",
+      "description": "Save this as default for the task type",
+      "default": false
+    }
+  },
+  "workflow": [
+    {
+      "step": "analyze_current_context",
+      "action": "script",
+      "script": ".claude/scripts/model-context.sh",
+      "description": "Analyze current project context for model suggestions"
+    },
+    {
+      "step": "suggest_model",
+      "action": "script",
+      "script": ".claude/scripts/model-manager.sh suggest",
+      "parameters": {
+        "task_type": "{{task_type}}",
+        "current_model": "{{current_model}}"
+      },
+      "condition": "model_not_specified"
+    },
+    {
+      "step": "switch_model",
+      "action": "script",
+      "script": ".claude/scripts/model-manager.sh switch",
+      "parameters": {
+        "target_model": "{{model || suggested_model}}",
+        "save_preference": "{{save_preference}}"
+      }
+    },
+    {
+      "step": "verify_switch",
+      "action": "script",
+      "script": ".claude/scripts/model-manager.sh verify",
+      "description": "Verify model switch was successful"
+    }
+  ],
+  "shortcuts": {
+    "opus": {
+      "description": "Switch to Opus (most capable)",
+      "model": "claude-3-opus-20240229"
+    },
+    "sonnet": {
+      "description": "Switch to Sonnet (balanced)",
+      "model": "claude-3-sonnet-20240229"
+    },
+    "haiku": {
+      "description": "Switch to Haiku (fastest)",
+      "model": "claude-3-haiku-20240307"
+    }
+  },
+  "task_recommendations": {
+    "coding": "claude-3-sonnet-20240229",
+    "writing": "claude-3-opus-20240229",
+    "analysis": "claude-3-opus-20240229",
+    "debugging": "claude-3-sonnet-20240229",
+    "creative": "claude-3-opus-20240229",
+    "speed": "claude-3-haiku-20240307"
+  },
+  "success_message": "✅ Model switched successfully! Now using {{new_model}}",
+  "keyboard_shortcut": "Ctrl+M"
+}

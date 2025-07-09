@@ -1,0 +1,26 @@
+{
+  "max_parallel_agents": 3,
+  "default_timeout": 3600,
+  "communication_enabled": true,
+  "progress_tracking": true,
+  "auto_merge": false,
+  "conflict_resolution": "interactive",
+  "agent_templates": {
+    "coding": {
+      "branch_prefix": "feature/",
+      "timeout": 7200,
+      "priority": "high"
+    },
+    "testing": {
+      "branch_prefix": "test/",
+      "timeout": 1800,
+      "priority": "medium"
+    },
+    "documentation": {
+      "branch_prefix": "docs/",
+      "timeout": 1800,
+      "priority": "low"
+    }
+  },
+  "last_updated": "2025-07-09T07:28:48Z"
+}

@@ -1,0 +1,129 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "DR-SETUP-DEV-ClaudeSDKEnvironment-v1.0-20250708",
+    "description": "Enhanced Claude Code Development Environment",
+    "auto_init": true,
+    "memory_management": {
+      "claude_md_path": "./Claude.md",
+      "auto_update": true,
+      "context_aware": true,
+      "startup_sync": true,
+      "session_tracking": true
+    }
+  },
+  "startup": {
+    "load_project_context": true,
+    "auto_worktree_check": true,
+    "auto_init_new_projects": true,
+    "memory_sync_on_start": true,
+    "welcome_message": "Claude Code Enhanced - Ready for advanced workflows!"
+  },
+  "interaction": {
+    "default_mode": "default",
+    "auto_accept": false,
+    "plan_mode": false,
+    "shortcuts": {
+      "mode_toggle": "Shift+Tab",
+      "model_switch": "Ctrl+M",
+      "compact_chat": "Ctrl+C",
+      "clear_chat": "Ctrl+Shift+C"
+    }
+  },
+  "models": {
+    "default": "claude-3-sonnet-20240229",
+    "available": [
+      "claude-3-opus-20240229",
+      "claude-3-sonnet-20240229",
+      "claude-3-haiku-20240307"
+    ],
+    "quick_switch": {
+      "o": "claude-3-opus-20240229",
+      "s": "claude-3-sonnet-20240229",
+      "h": "claude-3-haiku-20240307"
+    }
+  },
+  "file_handling": {
+    "drag_drop": true,
+    "at_references": true,
+    "screenshot_paste": true,
+    "supported_formats": [
+      "png", "jpg", "jpeg", "gif", "webp", "bmp",
+      "js", "ts", "jsx", "tsx", "py", "java", "cpp", "c", "cs", "go", "rust",
+      "md", "txt", "json", "yaml", "yml", "xml", "html", "css", "scss", "sass",
+      "sh", "bash", "zsh", "fish", "sql", "dockerfile", "env"
+    ]
+  },
+  "workflows": {
+    "parallel_agents": true,
+    "worktree_support": true,
+    "sub_agents": {
+      "max_concurrent": 3,
+      "output_directory": "./output",
+      "structured_folders": true
+    }
+  },
+  "permissions": {
+    "fast_execution": false,
+    "skip_repetitive_checks": false,
+    "safe_mode": true,
+    "confirmation_required": [
+      "file_deletion",
+      "system_modification",
+      "network_requests"
+    ]
+  },
+  "notifications": {
+    "audio_enabled": true,
+    "completion_sound": true,
+    "error_sound": true,
+    "custom_sounds": {
+      "completion": ".claude/sounds/completion.wav",
+      "error": ".claude/sounds/error.wav",
+      "notification": ".claude/sounds/notification.wav"
+    }
+  },
+  "integrations": {
+    "ide": {
+      "enabled": true,
+      "auto_detect": true,
+      "supported": ["vscode", "cursor", "vim", "emacs"]
+    },
+    "external_tools": {
+      "clipboard_integration": true,
+      "raycast_support": true,
+      "alfred_support": true
+    }
+  },
+  "hooks": {
+    "pre_task": [],
+    "post_task": [
+      {
+        "name": "completion_notification",
+        "type": "audio",
+        "file": ".claude/sounds/completion.wav",
+        "enabled": true
+      },
+      {
+        "name": "project_status_update",
+        "type": "script",
+        "file": ".claude/hooks/update_status.sh",
+        "enabled": true
+      }
+    ],
+    "on_error": [
+      {
+        "name": "error_notification",
+        "type": "audio",
+        "file": ".claude/sounds/error.wav",
+        "enabled": true
+      }
+    ]
+  },
+  "logging": {
+    "level": "info",
+    "file": ".claude/logs/claude.log",
+    "max_size": "10MB",
+    "rotate": true
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "name": "parallel",
+  "description": "Execute tasks in parallel across multiple Claude Code agents using Git worktrees",
+  "type": "parallel",
+  "parameters": {
+    "tasks": {
+      "type": "array",
+      "description": "List of tasks to execute in parallel",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string", "required": true},
+          "type": {"type": "string", "default": "coding"},
+          "description": {"type": "string", "required": true},
+          "priority": {"type": "string", "default": "medium"}
+        }
+      }
+    },
+    "max_agents": {
+      "type": "number",
+      "description": "Maximum number of parallel agents",
+      "default": 3,
+      "min": 1,
+      "max": 5
+    },
+    "coordination": {
+      "type": "boolean",
+      "description": "Enable inter-agent communication",
+      "default": true
+    },
+    "auto_merge": {
+      "type": "boolean",
+      "description": "Automatically merge completed tasks",
+      "default": false
+    },
+    "timeout": {
+      "type": "number",
+      "description": "Timeout in seconds for all tasks",
+      "default": 3600
+    }
+  },
+  "workflow": [
+    {
+      "step": "initialize_coordinator",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh init",
+      "description": "Initialize parallel coordination system"
+    },
+    {
+      "step": "create_agent_sessions",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh create-multiple",
+      "parameters": {
+        "tasks": "{{tasks}}",
+        "max_agents": "{{max_agents}}"
+      },
+      "description": "Create agent sessions for each task"
+    },
+    {
+      "step": "start_parallel_execution",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh start-all",
+      "description": "Start all agents in parallel"
+    },
+    {
+      "step": "monitor_progress",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh monitor-all",
+      "parameters": {
+        "coordination": "{{coordination}}",
+        "timeout": "{{timeout}}"
+      },
+      "description": "Monitor agent progress and coordination"
+    },
+    {
+      "step": "collect_results",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh collect-results",
+      "condition": "all_completed"
+    },
+    {
+      "step": "merge_changes",
+      "action": "script",
+      "script": ".claude/scripts/parallel-coordinator.sh merge-all",
+      "condition": "auto_merge_enabled",
+      "parameters": {
+        "auto_merge": "{{auto_merge}}"
+      }
+    }
+  ],
+  "task_types": {
+    "coding": {
+      "branch_prefix": "feature/",
+      "timeout": 7200,
+      "requires": ["git", "editor"],
+      "priority": "high"
+    },
+    "testing": {
+      "branch_prefix": "test/",
+      "timeout": 1800,
+      "requires": ["test_runner"],
+      "priority": "medium"
+    },
+    "documentation": {
+      "branch_prefix": "docs/",
+      "timeout": 1800,
+      "requires": ["markdown_editor"],
+      "priority": "low"
+    },
+    "refactoring": {
+      "branch_prefix": "refactor/",
+      "timeout": 3600,
+      "requires": ["git", "editor"],
+      "priority": "medium"
+    },
+    "analysis": {
+      "branch_prefix": "analysis/",
+      "timeout": 2400,
+      "requires": ["analyzer"],
+      "priority": "medium"
+    }
+  },
+  "coordination_features": {
+    "message_passing": true,
+    "shared_context": true,
+    "progress_tracking": true,
+    "conflict_detection": true,
+    "result_aggregation": true
+  },
+  "success_message": "✅ Parallel execution completed! {{completed_count}}/{{total_count}} tasks finished successfully",
+  "progress_indicators": {
+    "real_time_updates": true,
+    "visual_progress_bar": true,
+    "agent_status_display": true,
+    "communication_log": true
+  }
+}

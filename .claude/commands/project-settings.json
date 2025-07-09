@@ -1,0 +1,60 @@
+{
+  "name": "project-settings",
+  "description": "Quick access to project configuration and settings",
+  "type": "interactive",
+  "parameters": {
+    "action": {
+      "type": "string",
+      "description": "Action to perform",
+      "required": true,
+      "options": ["view", "edit", "reset", "backup", "restore"]
+    },
+    "setting": {
+      "type": "string",
+      "description": "Specific setting to modify",
+      "required": false
+    }
+  },
+  "actions": {
+    "view": {
+      "description": "Display current project settings",
+      "files": [
+        ".claude/settings/settings.json",
+        "./Claude.md",
+        ".gitignore",
+        "package.json"
+      ]
+    },
+    "edit": {
+      "description": "Edit project settings interactively",
+      "prompt": "Which setting would you like to modify?",
+      "options": [
+        "Model preferences",
+        "Workflow settings", 
+        "Notification preferences",
+        "Permission settings",
+        "IDE integration",
+        "Custom commands"
+      ]
+    },
+    "reset": {
+      "description": "Reset settings to defaults",
+      "confirmation": "Are you sure you want to reset all settings to defaults?",
+      "backup": true
+    },
+    "backup": {
+      "description": "Create settings backup",
+      "output": ".claude/backups/settings-{{timestamp}}.json"
+    },
+    "restore": {
+      "description": "Restore settings from backup",
+      "input": ".claude/backups/",
+      "prompt": "Select backup to restore from"
+    }
+  },
+  "templates": {
+    "new_project": ".claude/templates/new-project-settings.json",
+    "minimal": ".claude/templates/minimal-settings.json",
+    "advanced": ".claude/templates/advanced-settings.json"
+  }
+}

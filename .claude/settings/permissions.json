@@ -1,0 +1,27 @@
+{
+  "skip_permissions": false,
+  "duration": "30m",
+  "scope": "file_ops",
+  "safety_level": "moderate",
+  "enabled_at": null,
+  "expires_at": null,
+  "operations_cached": 0,
+  "never_skip_operations": [
+    "sudo",
+    "rm -rf /",
+    "chmod 777 /",
+    "chown root",
+    "systemctl",
+    "service",
+    "passwd",
+    "usermod",
+    "userdel",
+    "groupmod",
+    "mount",
+    "umount",
+    "fdisk",
+    "mkfs",
+    "format"
+  ],
+  "last_updated": "2025-07-09T07:23:25Z"
+}

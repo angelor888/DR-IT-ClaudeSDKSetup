@@ -1,0 +1,98 @@
+{
+  "name": "skip-permissions",
+  "description": "Enable safe mode with cached permissions for faster development",
+  "type": "interactive",
+  "parameters": {
+    "mode": {
+      "type": "string",
+      "description": "Permission mode action",
+      "required": false,
+      "options": ["enable", "disable", "toggle", "status", "cache", "clear"],
+      "default": "toggle"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Duration to skip permissions",
+      "required": false,
+      "options": ["5m", "15m", "30m", "1h", "session"],
+      "default": "30m"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Scope of permission skipping",
+      "required": false,
+      "options": ["file_ops", "git_ops", "network_ops", "system_ops", "all"],
+      "default": "file_ops"
+    },
+    "safety_level": {
+      "type": "string",
+      "description": "Safety level while skipping permissions",
+      "required": false,
+      "options": ["strict", "moderate", "permissive"],
+      "default": "moderate"
+    }
+  },
+  "workflow": [
+    {
+      "step": "validate_request",
+      "action": "script",
+      "script": ".claude/scripts/permission-manager.sh validate",
+      "parameters": {
+        "scope": "{{scope}}",
+        "safety_level": "{{safety_level}}"
+      }
+    },
+    {
+      "step": "update_permissions",
+      "action": "script",
+      "script": ".claude/scripts/permission-manager.sh {{mode}}",
+      "parameters": {
+        "duration": "{{duration}}",
+        "scope": "{{scope}}",
+        "safety_level": "{{safety_level}}"
+      }
+    },
+    {
+      "step": "cache_permissions",
+      "action": "script",
+      "script": ".claude/scripts/permission-manager.sh cache-update",
+      "condition": "mode_enabled"
+    },
+    {
+      "step": "show_warning",
+      "action": "script",
+      "script": ".claude/scripts/permission-manager.sh show-warning",
+      "condition": "permissions_skipped"
+    },
+    {
+      "step": "display_status",
+      "action": "script",
+      "script": ".claude/scripts/permission-manager.sh display-status"
+    }
+  ],
+  "safety_overrides": {
+    "always_confirm": [
+      "system_modification",
+      "file_deletion",
+      "network_requests",
+      "package_installation",
+      "git_force_operations"
+    ],
+    "never_skip": [
+      "sudo_operations",
+      "root_access",
+      "system_configuration",
+      "security_changes"
+    ],
+    "warning_threshold": 10
+  },
+  "timeout_settings": {
+    "5m": 300,
+    "15m": 900,
+    "30m": 1800,
+    "1h": 3600,
+    "session": -1
+  },
+  "success_message": "✅ Permission settings updated: {{mode}} ({{duration}})",
+  "warning_message": "⚠️ Permissions are being skipped - use with caution!"
+}

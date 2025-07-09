@@ -1,0 +1,40 @@
+{
+  "name": "gsave",
+  "description": "Quick git save with intelligent commit message generation",
+  "type": "single",
+  "parameters": {
+    "message": {
+      "type": "string",
+      "description": "Custom commit message (optional)",
+      "required": false
+    },
+    "push": {
+      "type": "boolean",
+      "description": "Push to remote after commit",
+      "default": true
+    },
+    "branch": {
+      "type": "string",
+      "description": "Target branch",
+      "default": "main"
+    }
+  },
+  "workflow": [
+    {
+      "step": "intelligent_git_save",
+      "action": "script",
+      "script": ".claude/scripts/intelligent-gsave.sh",
+      "parameters": {
+        "message": "{{message}}",
+        "push": "{{push}}",
+        "branch": "{{branch}}"
+      },
+      "description": "Execute intelligent git save with AI-powered commit messages"
+    }
+  ],
+  "success_message": "✅ Changes saved and pushed to {{branch}}",
+  "error_handling": {
+    "on_conflict": "show_resolution_options",
+    "on_push_failure": "show_push_options"
+  }
+}

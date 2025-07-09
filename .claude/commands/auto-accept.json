@@ -1,0 +1,84 @@
+{
+  "name": "auto-accept",
+  "description": "Toggle auto-accept mode for faster development cycles",
+  "type": "interactive",
+  "parameters": {
+    "mode": {
+      "type": "string",
+      "description": "Auto-accept mode action",
+      "required": false,
+      "options": ["on", "off", "toggle", "status"],
+      "default": "toggle"
+    },
+    "timeout": {
+      "type": "number",
+      "description": "Auto-accept timeout in seconds",
+      "required": false,
+      "default": 10,
+      "min": 5,
+      "max": 60
+    },
+    "safe_mode": {
+      "type": "boolean",
+      "description": "Enable safety checks even in auto-accept mode",
+      "default": true
+    }
+  },
+  "workflow": [
+    {
+      "step": "check_current_mode",
+      "action": "script",
+      "script": ".claude/scripts/auto-accept-manager.sh status",
+      "description": "Check current auto-accept status"
+    },
+    {
+      "step": "toggle_mode",
+      "action": "script",
+      "script": ".claude/scripts/auto-accept-manager.sh {{mode}}",
+      "parameters": {
+        "timeout": "{{timeout}}",
+        "safe_mode": "{{safe_mode}}"
+      }
+    },
+    {
+      "step": "update_settings",
+      "action": "script",
+      "script": ".claude/scripts/auto-accept-manager.sh save-settings",
+      "description": "Save auto-accept settings"
+    },
+    {
+      "step": "show_status",
+      "action": "script",
+      "script": ".claude/scripts/auto-accept-manager.sh display-status",
+      "description": "Display current auto-accept status"
+    }
+  ],
+  "safety_checks": {
+    "dangerous_operations": [
+      "file_deletion",
+      "system_modification",
+      "network_requests",
+      "git_force_push",
+      "npm_install",
+      "sudo_commands"
+    ],
+    "always_confirm": true,
+    "timeout_operations": [
+      "long_running_scripts",
+      "build_processes",
+      "test_suites"
+    ]
+  },
+  "visual_indicators": {
+    "enabled_icon": "🟢",
+    "disabled_icon": "🔴",
+    "warning_icon": "⚠️",
+    "status_colors": {
+      "enabled": "green",
+      "disabled": "red",
+      "warning": "yellow"
+    }
+  },
+  "success_message": "✅ Auto-accept mode {{mode}} successfully",
+  "keyboard_shortcut": "Ctrl+A"
+}

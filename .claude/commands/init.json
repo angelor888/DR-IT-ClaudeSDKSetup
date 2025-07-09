@@ -1,0 +1,49 @@
+{
+  "name": "init",
+  "description": "Initialize project with Claude Code context and memory management",
+  "type": "single",
+  "parameters": {
+    "force": {
+      "type": "boolean",
+      "description": "Force re-initialization even if already initialized",
+      "default": false
+    },
+    "template": {
+      "type": "string",
+      "description": "Project template to use",
+      "options": ["auto", "nodejs", "python", "rust", "go", "generic"],
+      "default": "auto"
+    }
+  },
+  "workflow": [
+    {
+      "step": "check_existing",
+      "action": "script",
+      "script": ".claude/scripts/auto-init.sh",
+      "condition": "not_force_mode"
+    },
+    {
+      "step": "initialize_memory",
+      "action": "script",
+      "script": ".claude/scripts/memory-sync.sh sync",
+      "description": "Initialize memory management"
+    },
+    {
+      "step": "generate_context",
+      "action": "script", 
+      "script": ".claude/scripts/auto-init.sh",
+      "description": "Generate project context"
+    },
+    {
+      "step": "setup_monitoring",
+      "action": "script",
+      "script": ".claude/scripts/memory-sync.sh watch",
+      "description": "Setup file change monitoring"
+    }
+  ],
+  "success_message": "✅ Project initialized with Claude Code context management",
+  "hooks": {
+    "pre_init": ".claude/hooks/pre-init.sh",
+    "post_init": ".claude/hooks/post-init.sh"
+  }
+}

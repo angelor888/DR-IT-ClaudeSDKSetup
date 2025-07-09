@@ -1,0 +1,23 @@
+{
+  "enabled": false,
+  "timeout": 10,
+  "safe_mode": true,
+  "dangerous_operations": [
+    "rm -rf",
+    "sudo",
+    "chmod 777",
+    "git push --force",
+    "npm install",
+    "pip install",
+    "docker run",
+    "systemctl",
+    "killall",
+    "pkill"
+  ],
+  "always_confirm": [
+    "file_deletion",
+    "system_modification",
+    "network_requests"
+  ],
+  "last_updated": "2025-07-09T07:21:21Z"
+}

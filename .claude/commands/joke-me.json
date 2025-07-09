@@ -1,0 +1,45 @@
+{
+  "name": "joke-me",
+  "description": "Get a programming joke to lighten the mood during development",
+  "type": "single",
+  "parameters": {
+    "category": {
+      "type": "string",
+      "description": "Type of joke to get",
+      "required": false,
+      "options": ["programming", "debugging", "git", "ai", "random"],
+      "default": "random"
+    },
+    "safe": {
+      "type": "boolean",
+      "description": "Only family-friendly jokes",
+      "default": true
+    }
+  },
+  "workflow": [
+    {
+      "step": "fetch_joke",
+      "action": "script",
+      "script": ".claude/scripts/joke-api.sh",
+      "parameters": {
+        "category": "{{category}}",
+        "safe": "{{safe}}"
+      }
+    },
+    {
+      "step": "display_joke",
+      "action": "format_output",
+      "template": "## 😄 Programming Humor Break\n\n{{joke_content}}\n\n---\n*Hope that brightened your coding session!*"
+    }
+  ],
+  "success_message": "😄 Joke delivered! Back to coding with a smile.",
+  "fallback": {
+    "offline_jokes": [
+      "Why do programmers prefer dark mode? Because light attracts bugs!",
+      "A SQL query goes into a bar, walks up to two tables and asks: 'Can I join you?'",
+      "Why don't programmers like nature? It has too many bugs.",
+      "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
+      "Why did the programmer quit his job? He didn't get arrays!"
+    ]
+  }
+}
