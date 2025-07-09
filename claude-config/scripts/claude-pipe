@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# Claude Pipe - Wrapper for piping stdin to Claude
+# Usage: command | claude-pipe "prompt"
+# Alias: command | cla-p "prompt"
+#
+
+set -euo pipefail
+
+# Check if claude CLI is available
+if ! command -v claude &> /dev/null; then
+    echo "Error: Claude CLI not found. Install with: npm install -g @anthropic-ai/claude-code" >&2
+    exit 1
+fi
+
+# Check arguments
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <prompt>" >&2
+    echo "Example: tail -100 /var/log/nginx/error.log | $0 'summarize key errors'" >&2
+    exit 1
+fi
+
+# Get the prompt from arguments
+PROMPT="$*"
+
+# Check if stdin has data
+if [ -t 0 ]; then
+    echo "Error: No input provided via stdin" >&2
+    echo "Usage: command | $0 <prompt>" >&2
+    exit 1
+fi
+
+# Read stdin
+INPUT=$(cat)
+
+# Prepare the full prompt with context
+FULL_PROMPT="I'm providing you with some data via stdin. Please process it according to the following instruction:
+
+$PROMPT
+
+Here's the input data:
+\`\`\`
+$INPUT
+\`\`\`"
+
+# Call claude with the -p flag for pipe mode
+claude -p "$FULL_PROMPT"

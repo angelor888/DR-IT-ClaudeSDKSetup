@@ -1,0 +1,187 @@
+{
+  "version": "1.0.0",
+  "autoUpdate": {
+    "enabled": true,
+    "checkInterval": "daily",
+    "notifyBeforeUpdate": false,
+    "autoInstall": true
+  },
+  "cli": {
+    "defaultModel": "claude-opus-4",
+    "timeout": 300000,
+    "maxRetries": 3,
+    "logLevel": "info"
+  },
+  "mcp": {
+    "autoRestart": true,
+    "healthCheckInterval": 300,
+    "services": {
+      "filesystem": {
+        "enabled": true,
+        "autoUpdate": true
+      },
+      "memory": {
+        "enabled": true,
+        "autoUpdate": true
+      },
+      "puppeteer": {
+        "enabled": true,
+        "autoUpdate": true
+      },
+      "everything": {
+        "enabled": true,
+        "autoUpdate": true
+      }
+    }
+  },
+  "logging": {
+    "enabled": true,
+    "directory": "~/.config/claude/logs",
+    "maxFiles": 30,
+    "maxSize": "10MB"
+  },
+  "notifications": {
+    "enabled": true,
+    "updateSuccess": true,
+    "updateFailure": true,
+    "serviceRestart": false,
+    "voiceEnabled": true,
+    "voiceForTaskCompletion": true,
+    "voiceForErrors": true,
+    "voiceForManualIntervention": true
+  },
+  "memoryMode": {
+    "enabled": true,
+    "autoSave": true,
+    "watchScript": "~/.config/claude/scripts/memory-watch.sh"
+  },
+  "contextRetrieval": {
+    "autoMention": true,
+    "semanticFallback": true,
+    "requireTestVerification": true,
+    "testPrompt": "Please provide or suggest test cases for verification"
+  },
+  "advancedModes": {
+    "planMode": {
+      "enabled": true,
+      "shortcut": "Shift+Tab Shift+Tab",
+      "autoGatherFiles": true,
+      "requireConfirmation": true,
+      "defaultForComplexTasks": true,
+      "autoTriggerKeywords": ["implement", "create", "build", "refactor", "migrate", "add feature", "fix bug"],
+      "planTemplate": "## Execution Plan\n\n### Understanding\n[What I understand about the request]\n\n### Step-by-Step Plan\n1. [Detailed steps]\n\n### Files Affected\n- [List of files]\n\n### Risks & Considerations\n- [Potential issues]\n\n### Expected Outcome\n[What the result should be]\n\n**Please approve this plan before I proceed with implementation.**"
+    },
+    "ultraThink": {
+      "enabled": true,
+      "trigger": "Ultra think",
+      "tokenMultiplier": 3,
+      "collapsibleSummary": true,
+      "autoTriggerForComplexQuestions": true
+    }
+  },
+  "workflow": {
+    "gitIntegration": {
+      "enabled": true,
+      "autoCommitPrompts": true,
+      "commitMessageTemplate": "{action}: {description}\n\n{details}\n\n🤖 Generated with Claude Code\nCo-Authored-By: Claude <noreply@anthropic.com>",
+      "promptAfterChanges": true,
+      "suggestCheckpoints": true
+    },
+    "qualityAssurance": {
+      "enabled": true,
+      "autoReviewTriggers": ["significant changes", "new features", "bug fixes"],
+      "reviewPrompt": "Please review this work for potential issues, edge cases, and improvements",
+      "requireTestConsideration": true
+    },
+    "projectContext": {
+      "autoLoadClaudeMD": true,
+      "createTemplateIfMissing": true,
+      "updateMemoryOnInstructions": true,
+      "crossProjectAwareness": true
+    }
+  },
+  "conversationControls": {
+    "singleEsc": "abort_generation",
+    "doubleEsc": "show_history",
+    "commands": {
+      "/compact": "summarize_conversation",
+      "/clear": "clear_history",
+      "/plan": "enter_plan_mode",
+      "/checkpoint": "git_checkpoint_prompt",
+      "/qa": "quality_assurance_review",
+      "/docs": "fetch_documentation"
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "preToolUse": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/safety/pre-tool-use-safety.sh",
+      "blockUnsafeCommands": true,
+      "logBlocks": true
+    },
+    "stop": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/stop-hook.sh",
+      "logConversations": true
+    },
+    "preRun": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/pre-run-hook.sh",
+      "logCommands": true
+    },
+    "postRun": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/logging/enhanced-post-tool-use.sh",
+      "trimOutput": true,
+      "maxLines": 500,
+      "generateInterfaces": true,
+      "trackPerformance": true
+    },
+    "notification": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/notification-hook.sh"
+    },
+    "subAgentStop": {
+      "enabled": true,
+      "script": "~/.config/claude/hooks/coordination/sub-agent-stop-hook.sh"
+    }
+  },
+  "parallelExecution": {
+    "enabled": true,
+    "maxConcurrentAgents": 4,
+    "autoSuggestParallelization": true,
+    "parallelizationTriggers": [
+      "migrate",
+      "refactor multiple",
+      "update all",
+      "process multiple",
+      "bulk operation",
+      "mass update",
+      "convert all",
+      "generate multiple"
+    ],
+    "taskDistributionStrategy": "balanced",
+    "progressReporting": {
+      "enabled": true,
+      "interval": 30,
+      "showIndividualProgress": true,
+      "notifyOnCompletion": true
+    }
+  },
+  "webIntegration": {
+    "enabled": true,
+    "autoFetchDocumentation": true,
+    "allowedDomains": [
+      "docs.anthropic.com",
+      "developer.mozilla.org",
+      "stackoverflow.com",
+      "github.com",
+      "api.*.com",
+      "docs.*.com"
+    ],
+    "cacheDocumentation": true,
+    "searchIntegration": true,
+    "urlParsingEnabled": true
+  }
+}

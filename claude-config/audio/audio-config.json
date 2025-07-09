@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "volume": 0.7,
+  "systemSounds": {
+    "taskComplete": "system-sounds/task-complete.aiff",
+    "error": "system-sounds/error.aiff",
+    "warning": "system-sounds/warning.aiff",
+    "success": "system-sounds/success.aiff",
+    "notification": "system-sounds/notification.aiff"
+  },
+  "projectSounds": {},
+  "voiceSettings": {
+    "enabled": true,
+    "voice": "Samantha",
+    "rate": 180,
+    "volume": 0.8
+  },
+  "contextualSounds": {
+    "git": "system-sounds/git-action.aiff",
+    "build": "system-sounds/build-complete.aiff",
+    "test": "system-sounds/test-complete.aiff",
+    "deploy": "system-sounds/deploy-complete.aiff"
+  }
+}
