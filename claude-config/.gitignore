@@ -37,4 +37,6 @@ test-logs/
 Thumbs.db
 
 # Permission Cache (contains sensitive data)
+permissions-cache.jsonenvironment.backup*
+*.log
 permissions-cache.json
