@@ -1,14 +1,23 @@
 {
-  "name": "dr-it-claudesdksetup",
+  "name": "@dr-it/claude-sdk-setup",
   "version": "1.0.0",
-  "description": "Comprehensive setup for Claude SDK, MCP services, and development environment",
-  "main": "index.js",
+  "description": "Comprehensive Claude Code advanced workflow system with Git worktree, design iteration, IDE integration, and intelligent automation",
+  "main": "install.sh",
+  "bin": {
+    "claude-workflow-install": "./install.sh",
+    "claude-workflow-uninstall": "./uninstall.sh"
+  },
   "scripts": {
+    "install": "bash install.sh",
+    "uninstall": "bash uninstall.sh",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "verify": "bash scripts/verify-installation.sh",
     "verify:toolchain": "bash scripts/verify-toolchain.sh",
+    "validate": "bash validate-package-readiness.sh",
+    "build": "bash build-pkg.sh",
+    "release": "bash release.sh",
     "sendgrid": "node sendgrid-mcp-server.js",
     "jobber": "node jobber-mcp-server.js",
     "matterport": "node matterport-mcp-server.js",
@@ -20,10 +29,24 @@
   },
   "keywords": [
     "claude",
+    "claude-code",
+    "workflow",
     "sdk",
     "mcp",
     "automation",
-    "setup"
+    "setup",
+    "git-worktree",
+    "design-iteration",
+    "ide-integration",
+    "macos",
+    "development-tools"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "os": [
+    "darwin"
   ],
   "author": "DuetRight IT Team",
   "license": "PROPRIETARY",
@@ -59,7 +82,23 @@
   },
   "directories": {
     "doc": "docs",
-    "test": "tests"
+    "test": "tests",
+    "bin": "bin"
   },
+  "files": [
+    "install.sh",
+    "uninstall.sh",
+    "claude-config/**/*",
+    "scripts/**/*",
+    "configs/**/*",
+    "docs/**/*",
+    "README.md",
+    "package.json"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "restricted"
+  },
+  "preferGlobal": true,
   "type": "module"
 }

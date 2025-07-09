@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "description": "Multi-computer synchronization configuration",
+  "syncSettings": {
+    "enabled": true,
+    "syncInterval": 300,
+    "conflictResolution": "merge",
+    "backupBeforeSync": true,
+    "maxBackups": 10
+  },
+  "computers": {},
+  "syncPaths": [
+    {
+      "path": "scripts/",
+      "description": "Workflow scripts",
+      "syncMode": "bidirectional",
+      "excludePatterns": ["*.log", "*.tmp"],
+      "conflicts": "merge"
+    },
+    {
+      "path": "commands/",
+      "description": "Custom commands",
+      "syncMode": "bidirectional",
+      "excludePatterns": [],
+      "conflicts": "merge"
+    },
+    {
+      "path": "templates/",
+      "description": "Project templates",
+      "syncMode": "bidirectional",
+      "excludePatterns": [],
+      "conflicts": "merge"
+    },
+    {
+      "path": "hooks/",
+      "description": "Hook system",
+      "syncMode": "bidirectional",
+      "excludePatterns": ["*.log"],
+      "conflicts": "merge"
+    },
+    {
+      "path": "shell-integration.sh",
+      "description": "Shell integration",
+      "syncMode": "bidirectional",
+      "excludePatterns": [],
+      "conflicts": "merge"
+    }
+  ],
+  "excludePaths": [
+    "logs/",
+    "test-logs/",
+    "backups/",
+    "databases/",
+    "cache/",
+    "environment",
+    "permissions-cache.json",
+    "worktrees.json"
+  ],
+  "mergeStrategies": {
+    "json": {
+      "strategy": "deep-merge",
+      "arrayMerge": "union",
+      "conflictResolver": "timestamp"
+    },
+    "shell": {
+      "strategy": "three-way-merge",
+      "conflictResolver": "manual"
+    },
+    "markdown": {
+      "strategy": "three-way-merge",
+      "conflictResolver": "manual"
+    }
+  }
+}

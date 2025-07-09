@@ -64,6 +64,13 @@ alias cclip='claude-clipboard'
 alias cclip-save='claude-clipboard save'
 alias cclip-interactive='claude-clipboard interactive'
 
+# Claude Multi-Computer Sync aliases
+alias claude-sync='~/.config/claude/scripts/claude-multi-sync.sh'
+alias csync='claude-sync'
+alias csync-status='claude-sync status'
+alias csync-daemon='claude-sync daemon'
+alias csync-test='claude-sync test'
+
 # Utility functions
 claude-help() {
     echo "Claude & MCP Commands:"
@@ -99,6 +106,9 @@ claude-help() {
     echo "  caudio-play <type> - Play specific notification sound"
     echo "  cclip-save         - Save clipboard content to intelligent filename"
     echo "  cclip-interactive  - Interactive clipboard-to-file mode"
+    echo "  csync-status       - Show multi-computer sync status"
+    echo "  csync-daemon       - Start auto-sync daemon"
+    echo "  csync-test         - Test sync configuration"
 }
 
 # Interactive update function
