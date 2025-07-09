@@ -8,7 +8,11 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "verify": "bash scripts/verify-installation.sh",
-    "verify:toolchain": "bash scripts/verify-toolchain.sh"
+    "verify:toolchain": "bash scripts/verify-toolchain.sh",
+    "sendgrid": "node sendgrid-mcp-server.js",
+    "jobber": "node jobber-mcp-server.js",
+    "matterport": "node matterport-mcp-server.js",
+    "quickbooks": "node quickbooks-mcp-server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +31,13 @@
     "url": "https://github.com/angelor888/DR-IT-ClaudeSDKSetup/issues"
   },
   "homepage": "https://github.com/angelor888/DR-IT-ClaudeSDKSetup#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "@sendgrid/mail": "^8.1.5",
+    "axios": "^1.6.0",
+    "@matterport/sdk": "^1.4.24",
+    "node-quickbooks": "^2.0.46"
+  },
   "devDependencies": {
     "jest": "^29.0.0"
   },
@@ -45,5 +56,10 @@
       "lcov",
       "html"
     ]
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "type": "module"
 }
