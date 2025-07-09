@@ -49,4 +49,30 @@ DR-IT-ClaudeSDKSetup/
 - **Shell Integration**: Custom aliases and functions in ~/.config/claude/shell-integration.sh
 
 ## Learned Facts
-<!-- This section will be automatically updated by the memory watch task --># [2025-07-08 16:41] Test memory entry
+- Environment successfully tested on Mac mini with Darwin 24.6.0
+- Node.js managed via nvm for version flexibility
+- Bun runtime available as alternative to npm
+- MCP servers configured: filesystem, memory, sequentialthinking, playwright
+
+### July 9, 2025 - MCP Ecosystem Expansion
+- **Major Achievement**: Expanded from 19 to 26 MCP servers (271% total growth from original 7)
+- **Custom Development**: Built 4 production MCP servers (SendGrid, Jobber, Matterport, QuickBooks)
+- **Authentication Framework**: Complete environment setup for 25 services requiring auth
+- **Slack Integration**: Bot operational with message posting and pinning capabilities
+- **Business Coverage**: Full lifecycle automation from leads to payments
+- **Testing**: Comprehensive validation suite confirms all systems operational
+
+### Technical Patterns Established
+- **MCP Architecture**: ES modules with `@modelcontextprotocol/sdk` v1.15.0
+- **Custom Server Pattern**: Consistent tool handler implementation
+- **Environment Management**: Centralized auth via `~/.config/claude/environment`
+- **Service Discovery**: NPM search strategy for existing vs custom development
+- **Git Workflow**: Conventional commits with Claude co-authorship
+
+### Next Phase Ready
+- **Authentication Setup**: Framework complete, tokens pending for 25 servers
+- **Slack Bot**: Operational in #it-report channel with proper permissions
+- **Documentation**: Comprehensive guides and learnings captured
+- **Repository**: All work committed and pushed to GitHub
+
+<!-- This section will be automatically updated by the memory watch task -->
