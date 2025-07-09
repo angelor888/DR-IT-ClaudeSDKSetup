@@ -45,14 +45,14 @@ cp package.json "$PACKAGE_ROOT/usr/local/lib/claude-tools/"
 
 # Create symlinks in /usr/local/bin
 echo -e "${YELLOW}🔗 Creating symlinks...${NC}"
+mkdir -p "$PACKAGE_ROOT/usr/local/bin"
 ln -sf "/usr/local/lib/claude-tools/install.sh" "$PACKAGE_ROOT/usr/local/bin/claude-workflow-install"
 ln -sf "/usr/local/lib/claude-tools/uninstall.sh" "$PACKAGE_ROOT/usr/local/bin/claude-workflow-uninstall"
 
 # Make scripts executable
 echo -e "${YELLOW}⚙️  Setting permissions...${NC}"
 find "$PACKAGE_ROOT/usr/local/lib/claude-tools" -name "*.sh" -exec chmod +x {} \;
-chmod +x "$PACKAGE_ROOT/usr/local/bin/claude-workflow-install"
-chmod +x "$PACKAGE_ROOT/usr/local/bin/claude-workflow-uninstall"
+# Symlinks don't need chmod
 
 # Create scripts directory
 SCRIPTS_DIR="$BUILD_DIR/scripts"

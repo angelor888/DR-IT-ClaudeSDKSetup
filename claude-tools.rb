@@ -2,7 +2,7 @@ class ClaudeTools < Formula
   desc "Claude Code advanced workflow system with Git worktree, design iteration, and IDE integration"
   homepage "https://github.com/angelor888/DR-IT-ClaudeSDKSetup"
   url "https://github.com/angelor888/DR-IT-ClaudeSDKSetup/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "PLACEHOLDER_SHA256"
+  sha256 "10be283076bdb6b817ac6219ec1d672e5a52e0c03510505a1e8f745798f97f99"
   license "PROPRIETARY"
   version "1.0.0"
 
